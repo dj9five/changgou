@@ -66,4 +66,14 @@ public class Result<T> implements Serializable {
     public void setData(T data) {
         this.data = data;
     }
+
+    public static Result success() {
+        return new Result();
+    }
+
+    public static <T> Result success(T data) {
+        Result result = new Result();
+        result.setData(data);
+        return result;
+    }
 }
