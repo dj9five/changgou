@@ -24,8 +24,7 @@ public class FileUploadController {
         FastDFSFile fastDFSFile = new FastDFSFile(file.getOriginalFilename(), file.getBytes(), StringUtils.getFilenameExtension(file.getOriginalFilename()));
         String[] upload = FastDFSUtil.upload(fastDFSFile);
         //拼接访问地址
-        //TODO 配置信息加到配置文件中
-        String url="192.168.2.21:8080/"+upload[0]+"/"+upload[1];
+        String url = FastDFSUtil.getTrackerInfo() + "/" + upload[0] + "/" + upload[1];
         return Result.success(url);
     }
 }
