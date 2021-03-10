@@ -15,10 +15,10 @@ import org.springframework.web.multipart.MultipartFile;
  * @Date 2021-01-10 22:42
  */
 @RestController
-@RequestMapping("upload")
+@RequestMapping("file")
 public class FileCenterController {
 
-    @PostMapping
+    @PostMapping("upload")
     public Result upload(@RequestParam("file") MultipartFile file) throws Exception {
         //封装文件信息
         FastDFSFile fastDFSFile = new FastDFSFile(file.getOriginalFilename(), file.getBytes(), StringUtils.getFilenameExtension(file.getOriginalFilename()));
