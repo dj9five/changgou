@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @Date 2021-01-10 22:42
  */
 @RestController
-@RequestMapping("file")
+@RequestMapping("fastdfs")
 public class FileCenterController {
 
     @PostMapping("upload")

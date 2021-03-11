@@ -16,12 +16,24 @@ spring:
         - id: changgou_goods_route
           #请求都转发到下面的微服务上
           uri: http://127.0.0.1:7002
+          #lb表示使用负载均衡，后面是对顶的微服务名 主要用于集群环境
+          #uri: lb://goods
           #路由断言，下面是配置路由规则
           predicates:
             #Host是基于host的过滤规则 只凡是以www.baidu.com开头的请求都将转发到uri的服务上
             #- Host=www.baidu.com**
             # - Path是基于请求路径的过滤规则 凡是以goods开始的请求，都将转发到uri的服务上
           - Path=/goods/**
+          filters:
+          #将请求路径中的第一个路径去掉，以/为分隔符，如果为2 则表示前2个路径都去掉
+          #- StripPrefix=1
+          #q请求路径前加上api前缀 并转发到
+          - PrefixPath=/api
+          #多个路由规则的配置
+        - id: changgou_file_route
+          uri: http://127.0.0.1:7003
+          predicates:
+           - Path=/file/**
 server:
   port: 8001
 
