@@ -29,6 +29,15 @@ spring:
           #- StripPrefix=1
           #q请求路径前加上api前缀 并转发到
           - PrefixPath=/api
+          # 局部限流过滤器，名字并不是随便起的 使用默认的factory
+          - name: RequestRateLimiter
+            args:
+              #用户身份唯一标识符，对应启动类中的bean名称
+              key-resolver: "#@ipKeyResolver"
+              #每秒允许有50个请求
+              redis-rate-limiter.replenishRate: 50
+              #允许并发100个请求，宽限的个数，最大100
+              redis-rate-limiter.burstCapacity: 100
           #多个路由规则的配置
         - id: changgou_file_route
           uri: http://127.0.0.1:7003
