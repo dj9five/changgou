@@ -24,7 +24,7 @@ public class GatewayWebApplication {
      * @return
      */
     @Bean("ipKeyResolver")
-    public KeyResolver UserKeyResolver() {
+    public KeyResolver userKeyResolver() {
         return exchange -> {
             String ip = Objects.requireNonNull(exchange.getRequest().getRemoteAddress()).getHostString();
             return Mono.just(ip);
